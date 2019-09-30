@@ -2,49 +2,65 @@
 
 
 
-##  UGUI
+## Unity 界面发展史
 
-### Unity 界面发展史
-
-#### OnGUI
-
-#### NGUI
-
-#### UGUI
-
-### 基础控件
-
-#### Canvas 画布
-
-#### Rect Transform
-
-#### Image
-
-#### Text
-
-#### Button 按钮
-
-#### Toggle 复选框
-
-#### Slider 滑动条
-
-#### Scrollbar 滑动条
-
-#### Dropdown 下拉菜单
+- OnGUI
+- NGUI
+- UGUI
 
 
 
-####  
+## 基础控件
+
+- Canvas 画布
+- Rect Transform
+- Image
+- Text
+- Button 按钮
+- Toggle 复选框
+- Slider 滑动条
+- Scrollbar 滑动条
+- Dropdown 下拉菜单
+- InputField 输入框
+- Panel 
 
 
 
-### 事件注册
+## 分辨率调整
+
+### 方法1：Game 窗口中添加
+
+- Fixed Resolution
+- Aspect Ration：比例
+
+### 方法2：修改 Canvas - Inspector - Canvas Scaler(Script)
+
+- Canvas Scaler(Script)
+
+  - Scale With Screen Size
+
+- Reference Match Mode：改为 Fixed Resolution
+
+- Match：选择 Reference Match Mode 的较小边
+
+  
+
+## Component 组件
+
+### Grid Layout Group (Script)
+
+- Layout - Grid Layout Group 表格布局
+- 自动排列，控制子元素的大小和位置，子元素不能更改。
+
+
+
+## 事件注册
 
 注意 EventSystem 是否可用，Scene 中 EventSystem 是共用的。
 
 共 4 种方法：
 
-#### 方法1：通过编辑器方法
+### 方法1：通过编辑器方法
 
 优点：方便、所见即所得
 
@@ -91,7 +107,7 @@ public void Fun1(string input){
 
 **其他 Canvas 元素**
 
-#### 方法2：AddListener
+### 方法2：AddListener
 
 优点：在代码中能看到是谁调用了这个方法
 
@@ -122,7 +138,7 @@ private void Start(){
 }
 ```
 
-#### 方法3：实现接口
+### 方法3：实现接口
 
 所有的 UI、GameObject 都可以使用
 
@@ -155,5 +171,5 @@ EventSystem 上的 Event System (Script) ：负责分发。
   - ISubmitHandler：选中 UI 后，按回车键
   - ICancelHandler：选中 UI 后，按 Esc 键
 
-#### 方法4：自定义框架
+### 方法4：自定义框架
 
