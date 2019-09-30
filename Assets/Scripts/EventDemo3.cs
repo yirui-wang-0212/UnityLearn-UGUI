@@ -41,9 +41,10 @@ public class EventDemo3 : MonoBehaviour, IPointerClickHandler, IDragHandler
         Vector3 worldPos;
         // 参数1：父物体的变换组件，参数2:屏幕坐标，参数3：摄像机，参数4：out 世界坐标
         RectTransformUtility.ScreenPointToWorldPointInRectangle(parentRTF, eventData.position, eventData.pressEventCamera, out worldPos);
-        // 2. 再将将光标的世界坐标赋值给 UI 元素的世界坐标
+        // 2. 再将光标的世界坐标赋值给 UI 元素的世界坐标
         this.transform.position = worldPos;
         // 遇到问题：当光标在点击在 UI 元素左下角时进行拖拽，拖完结束时光标在 UI 元素的中心
+        // 于是调整：见 DialogDrag.cs   
     }
 
 }
