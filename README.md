@@ -67,10 +67,20 @@
 缺点：在代码中看不到是谁调用了这个方法，工作中（尤其团队开发）用得最少
 
 ```c#
-// 1. 通过编辑器方法
-public void Fun1(string input){
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
-  	print("Fun1: " + input);
+public class EventDemo : MonoBehaviour
+{
+    // 事件注册的 4 种方法：
+    // 1. 通过编辑器方法
+
+    public void Fun1(string input){
+       
+       print("Fun1: " + input);
+   }
 }
 ```
 
@@ -112,29 +122,39 @@ public void Fun1(string input){
 优点：在代码中能看到是谁调用了这个方法
 
 ```c#
-//2. AddListener
-public void Fun2(){
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
-  	print("Fun2");
-}
+public class EventDemo2 : MonoBehaviour
+{
+    // 事件注册的 4 种方法
+    // 2. AddListener
+    
+    public void Fun2(){
+    
+        print("Fun2");
+    }
 
-public void Fun3(string str){
+    public void Fun3(string str){
+    
+        print("Fun3: " + str);
+    }
 
-  	print("Fun3: " + str);
-}
+    private void Start(){
+        
+        Button btn = this.transform.Find("AddListener/Button").GetComponent<Button>();
+        // public delegate void UnityAction();
+        // 需要传入一个 无返回值、无参数列表的方法
+        btn.onClick.AddListener(Fun2);
 
-private void Start(){
-
-    Button btn = this.transform.Find("AddListener/Button").GetComponent<Button>();
-    // public delegate void UnityAction();
-    // 需要传入一个 无返回值、无参数列表的方法
-    btn.onClick.AddListener(Fun2);
-
-    InputField input = this.transform.Find("AddListener/InputField").GetComponent<InputField>();
-    // public delegatevoid UnityAction<T0>(T0 arg0);
-    // 需要传入一个 无返回值，1个参数，参数类型为泛型，在这里是 string 的方法
-    // input.onValueChange.AddListener(Fun3);
-    input.onEndEdit.AddListener(Fun3);
+        InputField input = this.transform.Find("AddListener/InputField").GetComponent<InputField>();
+        // public delegatevoid UnityAction<T0>(T0 arg0);
+        // 需要传入一个 无返回值，1个参数，参数类型为泛型，在这里是 string 的方法
+        // input.onValueChange.AddListener(Fun3);
+        input.onEndEdit.AddListener(Fun3);
+    }
 }
 ```
 
@@ -170,6 +190,10 @@ EventSystem 上的 Event System (Script) ：负责分发。
   - IMoveHandler：选中 UI 后，移动（按键盘上的上下左右、wasd）
   - ISubmitHandler：选中 UI 后，按回车键
   - ICancelHandler：选中 UI 后，按 Esc 键
+
+不能挂在 Canvas 上，实现接口的脚本需要挂在有 Raycast Target 的物体上：如 Image、Text、Button 等。
+
+#### 实现：双击、拖拽 UI 元素（使之随光标移动）
 
 ### 方法4：自定义框架
 
