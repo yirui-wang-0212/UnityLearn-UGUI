@@ -247,7 +247,7 @@ public class EventDemo3 : MonoBehaviour, IPointerClickHandler, IDragHandler
 }
 ```
 
-#### 实现拖拽拖拽 UI 元素（使之随光标移动，完整版）
+#### 实现拖拽 UI 元素（使之随光标移动，完整版）
 
 ```c#
 using System.Collections;
